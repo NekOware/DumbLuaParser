@@ -1,12 +1,12 @@
 --[=[===========================================================
 --=
---=  Dumb Lua Parser - Lua parsing library
+--=  Dumb Lua Parser - Lua parsing library (NekOware fork)
 --=  by Marcus 'ReFreezed' Thunström
 --=
 --=  Tokenize Lua code or create ASTs (Abstract Syntax Trees)
 --=  and convert the data back to Lua.
 --=
---=  Version: 2.3 (2022-06-23)
+--=  Version: 2.3.1 (2025-05-21)
 --=
 --=  License: MIT (see the bottom of this file)
 --=  Website: http://refreezed.com/luaparser/
@@ -454,7 +454,7 @@ Special number notation rules.
 
 -============================================================]=]
 
-local PARSER_VERSION = "2.3.0"
+local PARSER_VERSION = "2.3.1"
 
 local NORMALIZE_MINUS_ZERO, HANDLE_ENV -- Should HANDLE_ENV be a setting?
 do
@@ -2010,6 +2010,7 @@ end
 	local tok                  = tokStart
 	local canParseLookupOrCall = false
 	local currentToken         = tokens[tok]
+	local previousToken        = tokens[tok-1]
 	local expr
 
 	-- identifier
@@ -2048,7 +2049,10 @@ end
 	-- unary
 	elseif
 		(isToken(currentToken, "keyword", "not") or (isTokenType(currentToken, "punctuation") and isTokenAnyValue(currentToken, OPERATORS_UNARY)))
-		and OPERATOR_PRECEDENCE.unary > lastPrecedence
+		and (
+			( isToken(previousToken, 'punctuation', '^') and isTokenType(currentToken, 'punctuation') )
+			or OPERATOR_PRECEDENCE.unary > lastPrecedence
+		)
 	then
 		local unary = AstUnary(currentToken, currentToken.value)
 		tok         = tok + 1 -- operator
