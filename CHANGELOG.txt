@@ -1,6 +1,13 @@
 Changelog
 Dumb Lua Parser
 
+v2.3.2 (2025-05-21)
+- Added type check asserts to `optimize`, `simplify` and `minify` to catch easy to make mistake of passing `parse` output without checking for nil error return value.
+
+v2.3.1 (2025-05-21)
+# NekOware Fork
+- Patched a parse failure caused by following a `^` with any unary punctuation character (`-`, `#`, or `~`)
+
 v2.3 (2022-06-23)
 - Added utility functions: findDeclaredNames(), findGlobalReferences(), findShadows().
 - Added token functions: updateToken(), cloneToken().

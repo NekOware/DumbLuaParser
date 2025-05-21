@@ -6,7 +6,7 @@
 --=  Tokenize Lua code or create ASTs (Abstract Syntax Trees)
 --=  and convert the data back to Lua.
 --=
---=  Version: 2.3.1 (2025-05-21)
+--=  Version: 2.3.2 (2025-05-21)
 --=
 --=  License: MIT (see the bottom of this file)
 --=  Website: http://refreezed.com/luaparser/
@@ -454,7 +454,7 @@ Special number notation rules.
 
 -============================================================]=]
 
-local PARSER_VERSION = "2.3.1"
+local PARSER_VERSION = "2.3.2"
 
 local NORMALIZE_MINUS_ZERO, HANDLE_ENV -- Should HANDLE_ENV be a setting?
 do
@@ -4445,6 +4445,7 @@ local function _simplify(node, stats)
 end
 
 local function simplify(node)
+	assertArg1("simplify", 1, node, "table")
 	local stats = Stats()
 	_simplify(node, stats)
 	return stats
@@ -5095,6 +5096,7 @@ end
 
 -- Note: References need to be updated after calling this!
 local function optimize(theNode)
+	assertArg1("optimize", 1, theNode, "table")
 	local stats = Stats()
 	_optimize(theNode, stats)
 	return stats
@@ -5145,6 +5147,7 @@ end
 
 -- stats = minify( node [, optimize=false ] )
 local function minify(node, doOptimize)
+	assertArg1("minify", 1, node, "table")
 	local stats = Stats()
 
 	if doOptimize then
