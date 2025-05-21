@@ -1,3 +1,8 @@
+### About this fork
+
+I created this fork just to iron some things out and try to patch some bugs here and there.  
+(My code is not that clean and may be a bit hacky at times so please bear with me and try not to take your eyes out with a pencil.)
+
 # Dumb Lua Parser
 
 *Dumb Lua Parser* is a library for tokenizing Lua code or creating ASTs (Abstract Syntax Trees) and converting the data back to Lua.
@@ -32,5 +37,5 @@ Check out [examples.lua](examples.lua) for some examples.
 
 ## Documentation
 
-See the [website](http://refreezed.com/luaparser/docs/) or the top of the [source file](dumbParser.lua).
+See the ~~[website](http://refreezed.com/luaparser/docs/)~~ (Defunct. [web.archive.org](https://web.archive.org/web/20220917104755/http://refreezed.com/luaparser/docs/)) or the top of the [source file](dumbParser.lua).
 
